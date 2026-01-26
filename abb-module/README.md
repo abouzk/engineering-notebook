@@ -20,3 +20,9 @@ To enable external control, the standard robot controller required specific soft
 * **State Machine Logic**: Implemented a RECORD structure (motion_program_state_type) in RAPID. This acts as a shared memory block where Python writes commands and the Robot reads them, effectively creating a request-response state machine
 
 ## 4. Manual Operations & Safety
+Before automating, I established manual competency with the FlexPendant:
+* **Jogging Modes**: Demonstrated proficiency in Joint Mode (individual axis control) vs. Linear Mode (Cartesian XYZ control)
+* **Frames**: Navigated the difference between Base Frame and Tool Frame reorientation
+* **Safety Protocols**: Tested E-Stop activation/recovery sequences and "Deadman Switch" handling in both simulation and physical contexts
+
+
