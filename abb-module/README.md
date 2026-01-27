@@ -1,28 +1,41 @@
-## 1. Project Overview  
-This repository documents the setup, configuration, and external control of an ABB IRB 1200 industrial robot using RobotStudio and a custom Python driver. The goal was to establish a communication bridge between a PC and the IRC5 controller to execute complex motion primitives defined in Python.
+# ABB Industrial Robot Control (Python/RAPID)
+**Hardware:** ABB IRB 1200 (Simulated in RobotStudio) | **Controller:** IRC5 (Virtual) | **Middleware:** RPI abb-motion-program-exec
 
-## 2. Tech Stack and Installation
-* **Hardware/Simulation**: ABB IRB 1200 (5kg/0.9m), IRC5 Controller (Virtual)
-* **Software**: ABB RobotStudio 6.14.01, Python 3.12
-* **Libraries**: abb-motion-program-exec (RPI Robotics Driver), general-robotics-toolbox (Kinematics & Math), numpy
+## 1. Project Overview
+This repository documents the architecture and implementation of an external control bridge for an ABB IRB 1200 industrial robot. Unlike standard teach-pendant programming, this project establishes a **client-server architecture** where a custom Python driver executes complex motion primitives (`MoveL`, `MoveJ`, `MoveC`) dynamically via Ethernet.
 
-## 3. System Configuration & Architecture
-To enable external control, the standard robot controller required specific software options and low-level configuration.
+The system allows for "Sim-to-Real" workflow validation, generating RAPID trajectories in Python and executing them deterministically on the IRC5 controller.
 
-**Controller Options**:
-* **616-1 PC Interface**: Enabled Ethernet communication, allowing the robot to act as a server for the Python client
-* **623-1 Multitasking**: Allowed the execution of background tasks (monitoring & logging) parallel to the main motion pointer
-* _Note: 689-1 Externally Guided Motion (EGM) is reserved for high-frequency real-time control (puppet mode) but was not used for this trajectory setup_
+## 2. System Architecture & Tech Stack
 
-**Configuration Management (SYS & EIO)**:
-* **SYS.cfg (System Parameters)**: Configured the controller to auto-load semi-static background tasks (logger and error_reporter) at startup
-* **EIO.cfg (I/O System)**: Defined the "virtual wiring" (Analog/Digital Outputs) that acts as the handshake signals between the RAPID environment and Python
-* **State Machine Logic**: Implemented a RECORD structure (motion_program_state_type) in RAPID. This acts as a shared memory block where Python writes commands and the Robot reads them, effectively creating a request-response state machine
+### Controller Configuration (IRC5)
+To enable external control, the standard robot controller was architected with specific software options and background tasks:
+* **616-1 PC Interface:** Enabled Ethernet socket communication, allowing the robot to act as a server for the Python client.
+* **623-1 Multitasking:** Configured to execute background tasks (monitoring & logging) parallel to the main motion pointer.
+* **Configuration Management:**
+    * `SYS.cfg` (System Parameters): Configured the controller to auto-load semi-static background tasks (`logger` and `error_reporter`) at startup.
+    * `EIO.cfg` (I/O System): Defined the "virtual wiring" (Analog/Digital Outputs) that acts as the handshake signals between the RAPID environment and Python.
 
-## 4. Manual Operations & Safety
-Before automating, I established manual competency with the FlexPendant:
-* **Jogging Modes**: Demonstrated proficiency in Joint Mode (individual axis control) vs. Linear Mode (Cartesian XYZ control)
-* **Frames**: Navigated the difference between Base Frame and Tool Frame reorientation
-* **Safety Protocols**: Tested E-Stop activation/recovery sequences and "Deadman Switch" handling in both simulation and physical contexts
+### Middleware Logic (State Machine)
+Implemented a `RECORD` structure in RAPID (`motion_program_state_type`) to serve as a shared memory block. This acts as a request-response state machine, ensuring deterministic communication between the asynchronous Python script and the real-time robot controller.
 
+## 3. Key Engineering Implementations
 
+### A. Frame Definition (TCP & Work Objects)
+Decoupled the motion path from the robot's physical base to ensure portability:
+* **Tool Data (`tooldata`):** Defined Tool Center Point (TCP) at `z=100mm` from the flange to simulate a welding end-effector.
+* **Work Object (`wobjdata`):** Established a fixed user coordinate system at `[600, 0, 550]`, allowing for relative path planning independent of the robot's mounting position.
+
+### B. Motion Zoning Strategy
+Utilized specific zone data to balance cycle time vs. trajectory fidelity:
+* **`z50` (Zone 50mm):** Used for continuous path cornering (blending) to maintain high velocity.
+* **`fine`:** Used for start/stop target convergence to ensure sub-millimeter precision at waypoints.
+
+## 4. Safety Protocols (ISO 10218 Aligned)
+Verified safety integration required for collaborative workspaces:
+* **E-Stop Logic:** Mapped hardware interrupts to Category 0/1 stops.
+* **Recovery Sequence:** Validated the physical "Deadman Switch" and "Motor On" hardware sequence required to resume Python control after a safety violation.
+
+## 5. Demo
+(url)![Robot Demo](media/irb1200_demo.mp4)
+*(Note: Video demonstration of Python-driven trajectory execution in RobotStudio)*
