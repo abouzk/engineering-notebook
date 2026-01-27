@@ -22,11 +22,14 @@ Python script initially failed to connect. Found that the standard virtual contr
 * **Fix:** Rebuilt the system in RobotStudio with option **616-1 PC Interface** enabled. This opened the socket for the Python driver.
 
 ## Debugging
+### Network Configuration (Sim vs. Real)
+The Python driver failed to connect initially because the IP was hardcoded to a static industrial address (`192.168.125.1`), which is standard for the physical IRC5 controller.
+* **Fix:** Switched to `127.0.0.1` (localhost) for the RobotStudio simulation.
+* **Architecture Note:** In production, this should not be hardcoded. It needs to be an environment variable or config parameter to allow seamless Sim-to-Real deployment without code changes.
 
 ### File Path Error
 Ran into a `FileNotFoundError` when executing the driver from VS Code. The script was looking for the config YAML in the current working directory rather than relative to the script location.
-
-**Fix:** Standardized path finding using `os`.
+* **Fix:** Standardized path finding using `os`.
 
 ```python
 # Old (Failed)
@@ -36,3 +39,4 @@ Ran into a `FileNotFoundError` when executing the driver from VS Code. The scrip
 script_dir = os.path.dirname(os.path.abspath(__file__))
 config_path = os.path.join(script_dir, '..', 'config', 'config.yml')
 with open(config_path, 'r') as file:
+```
