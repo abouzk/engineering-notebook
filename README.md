@@ -17,9 +17,9 @@ Middleware configuration and node lifecycle management.
 * *Status:* In Progress
 * *Focus:* Node composition and real-time DDS configuration.
 
-### 📂 Simulation (NVIDIA Isaac Sim)
+### 📂 [Teleoperation Simulation](https://github.com/abouzk/isaacsim-haptic-teleop.git) (NVIDIA Isaac Sim)
 High-fidelity physics simulation for Sim-to-Real transfer.
-* *Status:* Planned
+* *Status:* In Progress
 * *Focus:* USD asset pipelines and domain randomization for RL agents.
 
 ## Methodology
