@@ -6,21 +6,20 @@
 This repository serves as a living documentation of my technical development, experimental workflows, and problem-solving logs. Unlike my project repositories (which contain production-ready code), this notebook captures the **process**—the debugging trails, architectural decisions, and theoretical deep-dives that drive my engineering work.
 
 ## Learning Logs
+### 📂 [Teleoperation Simulation](https://github.com/abouzk/isaacsim-haptic-teleop.git) (NVIDIA Isaac Sim)
+High-fidelity physics simulation for Sim-to-Real transfer.
+* *Status:* In Progress
+* *Focus:* USD asset pipelines and domain randomization for RL agents.
+
+### 📂 [Robot Operating System](https://github.com/abouzk/RPI-Robot-Programming.git) (ROS 2)
+Middleware configuration and node lifecycle management.
+* *Status:* In Progress
+* *Focus:* Node composition and real-time DDS configuration.
 
 ### 📂 [Industrial Robotics](abb_learning_log.md)
 Documentation of standard industrial platforms and safety standards.
   * *Status:* Complete
   * *Summary:* Analysis of RWS communication, latching hardware states, and Python-to-RAPID bridge architecture.
-
-### 📂 Robot Operating System (ROS 2)
-Middleware configuration and node lifecycle management.
-* *Status:* In Progress
-* *Focus:* Node composition and real-time DDS configuration.
-
-### 📂 [Teleoperation Simulation](https://github.com/abouzk/isaacsim-haptic-teleop.git) (NVIDIA Isaac Sim)
-High-fidelity physics simulation for Sim-to-Real transfer.
-* *Status:* In Progress
-* *Focus:* USD asset pipelines and domain randomization for RL agents.
 
 ## Methodology
 My engineering approach follows a cycle of **Theory $\rightarrow$ Implementation $\rightarrow$ Validation**:
