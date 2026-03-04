@@ -3,7 +3,7 @@
 **Focus:** Robotics, Embedded Systems, and Control Theory
 
 ## Overview
-This repository serves as a living documentation of my technical development, experimental workflows, and problem-solving logs. Unlike my project repositories (which contain production-ready code), this notebook captures the **process**—the debugging trails, architectural decisions, and theoretical deep-dives that drive my engineering work.
+This repository serves as a living documentation of my technical development, experimental workflows, and problem-solving logs. Unlike my project repositories (which contain production-ready code), this notebook captures the **process:** the debugging trails, architectural decisions, and theoretical deep-dives that drive my engineering work.
 
 ## Active Learning Logs
 
@@ -11,6 +11,11 @@ This repository serves as a living documentation of my technical development, ex
 *High-fidelity physics simulation for Sim-to-Real transfer.*
 * **Status:** In Progress
 * **Focus:** Node communication, bilateral control loops, and multi-modal hardware mapping.
+
+### 📂 [HMI Accessibility & Sensorimotor Simulator](logs/hmi-accessibility-sim-log.md)
+*Testing human performance under artificial latency, input jitter, and sensory noise.*
+* **Status:** In Progress
+* **Focus:** Sensorimotor control loops, HCI ergonomics, and Pygame event handling.
 
 ### 📂 [Computer Vision Kinematics](logs/mediapipe-hand-kinematics-log.md)
 *Markerless telemetry using applied machine learning.*
