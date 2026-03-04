@@ -4,7 +4,7 @@ Industry standard for creating readable, machine-parsable commit history.
 **Format:** `type(scope): description`
 
 **Types:**
-* `feat`: A new feature or capability (e.g., `feat(teleop): add xbox controller node`)
+* `feat`: A new feature or capability
 * `fix`: A bug fix (e.g., `fix(kinematics): correct inverse matrix calculation`)
 * `refactor`: Rewriting code without changing its external behavior (cleaning up)
 * `docs`: Updates to READMEs, logs, or comments
