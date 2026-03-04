@@ -1,14 +1,14 @@
-_Before I get into the architecture, I just wanted to pull up a quick visual of what Google MediaPipe looks like out-of-the-box. As you can see, it actively maps these 21 coordinate points. Our MVP is just taking this exact wireframe and applying it to a pianist's wrist:_ https://www.youtube.com/watch?v=RRBXVu5UE-U
+# MediaPipe Hand Kinematics & Tracking Log
+**Production Code:** [mediapipe-hand-kinematics](https://github.com/abouzk/mediapipe-hand-kinematics)
 
-# Question 1: What exactly does an achievable short-term prototype look like?
-To keep the scope realistic, we shouldn't build a live mobile app yet. An achievable MVP is strictly a proof-of-concept using pre-recorded video. We take a standard iPhone video of a pianist's hands playing a simple C-major scale from a fixed angle. We feed that .mp4 file into a Python script to see if our tracking software can successfully draw a digital skeleton over the hands without losing the fingers when they move across the keys. The goal is just to prove the camera can reliably track the finger joints before we try to analyze them.
-
-# Question 2: How specifically do we extract data?
-We extract the movement data using Google MediaPipe. It is a free, pre-trained vision library that specifically looks for 21 joints on the human hand using standard 2D video. Because we are starting with the piano, the hands are mostly flat and visible, which is the ideal scenario for this software. As the video plays, the script logs the $(x,y)$ screen coordinates of those joints frame-by-frame and exports them into a basic spreadsheet. This turns a visual video into hard numbers we can actually measure.
-
-**Anticipated Question:** How do we track wrist angle if we only have X and Y axes?
-
-We have two ways to solve this without requiring expensive 3D hardware. First, MediaPipe’s machine learning actually predicts a simulated Z-axis (depth) coordinate from flat 2D video, giving us a rough estimate of the drop. But to make it mathematically stronger for the MVP, we just set up the camera at an elevated 45-degree angle. The reasoning behind this is that if we do a pure top-down angle, we lose the Y-axis and can't see the wrist drop. If we do a pure side-profile, the fingers block each other (the classic occlusion problem in camera vision.) The 45-degree angle is optimal. It gives MediaPipe enough perspective to track the X-axis movement across the keys, gives us the Y-axis visibility to calculate the forearm-to-wrist angle, and feeds MediaPipe the maximum amount of visual data to calculate that simulated Z-axis depth.
-
-# Question 3: What does expert diagnosis look like?
-For the MVP, we shouldn't try to diagnose the entire posture. We should track one specific, common beginner mistake: playing with a collapsed wrist. Expert diagnosis simply looks at the angle between the forearm, the wrist, and the knuckles in our spreadsheet data. If the expert's wrist maintains a 15-degree elevation, but the student's wrist drops below a set threshold (meaning their hand went flat), the system prints a flag at that exact frame of the video. For an MVP, we diagnose one specific physical failure, not the whole performance.
+### 2026-03-04: Architecture Scope & MVP Definition (Music/AI Alignment)
+* **Objective:** Define the Minimum Viable Product (MVP) for the kinematics pipeline, focusing on tracking fine-motor skills and ergonomic posture without wearable sensors.
+* **Architecture Decisions:**
+  * **Static Input vs. Live Edge AI:** The MVP will process pre-recorded `.mp4` video files rather than a live webcam feed. *Reasoning: Isolates the coordinate extraction logic from live rendering latency/hardware overhead.*
+  * **The 45-Degree Camera Angle:** The camera will be mounted at an elevated 45-degree angle. *Reasoning: A top-down angle loses the Y-axis (wrist drop), and a side-profile introduces classic computer vision occlusion (fingers blocking each other). 45 degrees maximizes X-axis traversal data while providing enough Y-axis visibility for MediaPipe to infer the simulated Z-depth.*
+  * **Diagnostic Metric:** The system will evaluate the angle between the forearm, wrist, and knuckles. *Reasoning: Limits the scope to a single binary failure state. If the wrist angle drops below a 15-degree threshold (a "collapsed wrist"), the system flags the exact frame in the output dataset.*
+* **Data Pipeline:**
+  1. Ingest `.mp4` video of a pianist playing a C-major scale.
+  2. Overlay the 21-point MediaPipe wireframe.
+  3. Extract frame-by-frame `(x,y)` coordinates and export to a `.csv` / spreadsheet format for mathematical analysis.
+* **Next Action Items:** * Write the baseline Python script to ingest an `.mp4` file and successfully initialize the MediaPipe `Hands` solution over the video frames.
