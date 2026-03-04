@@ -37,6 +37,11 @@ This repository serves as a living documentation of my technical development, ex
 * **Status:** Complete (Retroactive Documentation)
 * **Summary:** Architectural review of closed-loop feedforward + proportional velocity controllers, quadrature encoder timing, and sub-10µs interrupt latency diagnosis.
 
+### 📂 [Autonomous Mobile Service Robot (ATmega2560)](logs/atmega-obstacle-avoidance-log.md)
+*Differential drive kinematics and subsumption safety architecture.*
+* **Status:** Complete (Retroactive Documentation)
+* **Focus:** Hardware interrupts, proportional control loops, and embedded C++ safety overrides.
+
 ## Methodology
 My engineering approach follows a cycle of **Theory → Implementation → Validation**:
 1. **Theory:** Grounding work in fundamental constraints (e.g., Kinematics, ISO Safety).
