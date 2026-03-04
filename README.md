@@ -12,25 +12,30 @@ This repository serves as a living documentation of my technical development, ex
 * **Status:** In Progress
 * **Focus:** Node communication, bilateral control loops, and multi-modal hardware mapping.
 
-### 📂 [HMI Accessibility & Sensorimotor Simulator](logs/hmi-accessibility-sim-log.md)
-*Testing human performance under artificial latency, input jitter, and sensory noise.*
-* **Status:** In Progress
-* **Focus:** Sensorimotor control loops, HCI ergonomics, and Pygame event handling.
-
 ### 📂 [Computer Vision Kinematics Pipeline](logs/mediapipe-hand-kinematics-log.md)
 *Markerless telemetry using applied machine learning.*
 * **Status:** In Progress
 * **Focus:** Google MediaPipe integration and spatial coordinate extraction.
-
+  
+### 📂 [HMI Accessibility & Sensorimotor Simulator](logs/hmi-accessibility-sim-log.md)
+*Testing human performance under artificial latency, input jitter, and sensory noise.*
+* **Status:** In Progress
+* **Focus:** Sensorimotor control loops, HCI ergonomics, and Pygame event handling.
+  
+### 📂 [Industrial Automation & Safety Architecture (ABB)](logs/industrial-robot-control-python-log.md)
+*Documentation of standard industrial platforms and safety standards.*
+* **Status:** Complete
+* **Summary:** Analysis of RWS communication, latching hardware states, and Python-to-RAPID bridge architecture.
+  
 ### 📂 [ROS 2 Architecture & Middleware](logs/ros2-fundamentals-log.md)
 *Middleware configuration and node lifecycle management.*
 * **Status:** In Progress
 * **Focus:** Node composition and real-time DDS configuration.
 
-### 📂 [Industrial Automation & Safety Architecture (ABB)](logs/industrial-robot-control-python-log.md)
-*Documentation of standard industrial platforms and safety standards.*
-* **Status:** Complete
-* **Summary:** Analysis of RWS communication, latching hardware states, and Python-to-RAPID bridge architecture.
+### 📂 [Real-Time Embedded Motor Controller](logs/msp432-embedded-controllers-log.md)
+*Bare-metal control system on TI MSP432 (ARM Cortex-M4).*
+* **Status:** Complete (Retroactive Documentation)
+* **Summary:** Architectural review of closed-loop feedforward + proportional velocity controllers, quadrature encoder timing, and sub-10µs interrupt latency diagnosis.
 
 ## Methodology
 My engineering approach follows a cycle of **Theory → Implementation → Validation**:
