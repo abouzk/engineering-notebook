@@ -1,7 +1,7 @@
 # Real-Time Embedded Motor Controller (MSP432)
 **Production Code:** [msp432-embedded-controllers](https://github.com/abouzk/msp432-embedded-controllers)
 
-### 2026-01-22: Architecture Review & Control Loop Optimization (Post-Mortem)
+### 2026-03-04: Architecture Review & Control Loop Optimization (Post-Mortem)
 * **Objective:** Design a deterministic, closed-loop velocity controller to compensate for variable load disturbances and battery voltage drops on an autonomous mobile chassis.
 * **Architecture Decisions:**
   * **Hardware Timer Capture for Encoders:** Utilized `Timer_A` in Continuous Capture Mode rather than standard GPIO interrupts for encoder quadrature decoding.
