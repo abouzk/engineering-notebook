@@ -15,4 +15,14 @@
   2. Overlay the 21-point MediaPipe wireframe.
   3. Extract frame-by-frame `(x,y)` coordinates and export to a `.csv` / spreadsheet format for mathematical analysis.
 * **Next Action Items:**
-  * Write the baseline Python script to ingest an `.mp4` file and successfully initialize the MediaPipe `Hands` solution over the video frames.
+  * Write the baseline Python script to ingest an `.mp4` file and successfully initialize the MediaPipe solution over the video frames.
+
+### 2026-03-05: Domain Expert Consultation & Requirements Analysis
+* **Objective:** Establish pedagogical requirements and data sourcing strategies for the piano kinematics model.
+* **Architecture Decisions:**
+  * **Curriculum-Based Tracking:** The app will structure its tracking evaluation around established pedagogical frameworks (Beyer, Czerny) rather than free-play assessment.
+    * *Reasoning:* Advised by a classically trained piano instructor. Focusing on specific dexterity exercises provides a constrained, mathematically measurable baseline for the CV model to evaluate against.
+  * **Multi-Source Data Pipeline:** Training data will fuse live-recorded expert kinematics with scraped 2D video of historical virtuosos (e.g., Martha Argerich, Artur Rubinstein, Claudio Arrau).
+    * *Reasoning:* Diversifies the dataset to capture elite-level stylistic dexterity while maintaining controlled baseline captures from our domain expert. 
+* **Blockers/Constraints:** Extracting clean 3D coordinate deltas from compressed, historical 2D YouTube footage may introduce high noise levels.
+* **Next Action Items:** Build the initial `tracker.py` OpenCV/MediaPipe script to validate real-time hand wireframing via webcam.
