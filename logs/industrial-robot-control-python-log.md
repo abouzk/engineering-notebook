@@ -1,4 +1,4 @@
-# ABB IRC5 External Control (Python/RWS)  
+# Industrial Automation - Engineering Log 
 **Date:** Jan 2026  
 **Hardware:** ABB IRB 1200 (Virtual Controller)  
 **Driver:** abb-motion-program-exec  
