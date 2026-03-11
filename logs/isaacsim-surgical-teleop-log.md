@@ -1,4 +1,4 @@
-# Isaac Sim & Haptic Teleoperation Log
+# Surgical Digital Twin - Engineering Log
 **Production Code:** [isaacsim-surgical-teleop](https://github.com/abouzk/isaacsim-surgical-teleop)
 
 ### 2026-03-07: Phase 0 & 1 Kinematic Validation via ROS 2 Turtlesim
