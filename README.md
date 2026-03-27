@@ -21,6 +21,11 @@ This repository serves as a living documentation of my technical development, ex
 *Testing human performance under artificial latency, input jitter, and sensory noise.*
 * **Status:** In Progress
 * **Focus:** Sensorimotor control loops, HCI ergonomics, and Pygame event handling.
+
+### 📂 [Automated Weld Motion Controller (Capstone)](logs/esp32-weld-motion-controller-log.md)
+*Electromechanical motion control for deterministic weld travel speed.*
+* **Status:** In Progress
+* **Focus:** ESP32 firmware, DM542T microstepping configuration, and state machine implementation.
   
 ### 📂 [Industrial Automation & Safety Architecture (ABB)](logs/industrial-robot-control-python-log.md)
 *Documentation of standard industrial platforms and safety standards.*
