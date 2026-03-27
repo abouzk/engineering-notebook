@@ -60,7 +60,12 @@
   + Pin assignment finalized: GPIO 26 (STEP/PUL-), GPIO 25 (DIR-), GPIO 32 (Limit Switch)
     - *Reasoning:* Pins selected to avoid GPIO 34-39 (input-only on ESP32 DevKit) and GPIO 0/2/15 (boot-strapping pins that affect flash programming if pulled low at boot).
 * **Blockers / Constraints:**
-  + Hardware Safety Finding -- Stress fracturing identified at the inner corner junctions of the U-bracket where the bracket legs meet the top mounting bar. This geometry concentrates bending stress at exactly the points where the bracket is most loaded during carriage impact at home position. Two small screws retain the bracket to the actuator end plate -- if the plastic cracks at these mounting holes, the entire limit switch assembly detaches. Photos documented [here](https://github.com/abouzk/esp32-weld-motion-controller/tree/main/docs/audit).
+  + Hardware Safety Finding (ISO 14971 Hazard Analysis) -- Stress fracturing identified at the inner corner junctions of the U-bracket where the bracket legs meet the top mounting bar. This geometry concentrates bending stress at exactly the points where the bracket is most loaded during carriage impact at home position. Two small screws retain the bracket to the actuator end plate -- if the plastic cracks at these mounting holes, the entire limit switch assembly detaches. Photos documented [here](https://github.com/abouzk/esp32-weld-motion-controller/tree/main/docs/audit).
+      - Hazard: bracket detachment during carriage travel
+      - Hazardous situation: loss of home position reference with no hardware stop signal
+      - Harm: uncontrolled carriage travel beyond physical rail limits
+      - Risk classification: High
+      - Risk control measures: (1) firmware homing timeout as software detection layer, (2) mechanical bracket replacement as primary mitigation -- required before deployment
 * **Next Action Items:**
   + Implement firmware with homing timeout as bracket-failure detection mechanism.
   + Coordinate limit switch bracket repair with machine shop before shop deployment.
