@@ -22,7 +22,7 @@
     - *Reasoning:* Prevents operator from bypassing acknowledgment and immediately restarting motion after a safety event. Forces a deliberate decision before the machine moves again.
 * **Blockers / Constraints:**
   + `ESTOP_PIN` not yet assigned in firmware -- `attachInterrupt` for software E-STOP is currently non-functional (compile error). Hardware E-STOP 24V cut remains active as primary stop. Software E-STOP ISR deferred to Revision 3.
-  + GPIO pin assignment (code: 26/25/32) must be verified against physical wiring before first hardware test.
+  + GPIO pin assignment (code: 25/26/27) must be verified against physical wiring before first hardware test.
   + Belt drive pitch circumference placeholder in firmware header not yet filled in.
   + `HOLD` and `RETRACT` states not yet implemented -- current firmware goes `WELDING_FWD` to `FAULT` or manual stop. Planned for Revision 3.
   + First motion test pending oscilloscope validation of 565 Hz pulse frequency.
