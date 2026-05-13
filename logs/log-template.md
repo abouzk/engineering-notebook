@@ -1,3 +1,8 @@
+# PROJECT DISPLAY NAME - Engineering Log
+**Production Code:** [REPO NAME](REPO LINK)
+
+---
+
 ### [YYYY-MM-DD]: [Short Title of Goal/Meeting]
 * **Objective:** [What are you trying to achieve today?]
 * **Architecture Decisions:**
